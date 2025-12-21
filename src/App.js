@@ -12,33 +12,33 @@ import { logout } from './services/public-services';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [notes, setNotes] = useState([]); 
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    if(!isLoggedIn) return;
+    const token = localStorage.getItem('loginFlag');
+    if (token) setIsLoggedIn(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setNotes([]);
+      return;
+    }
 
     getAllNotes()
-      .then(resp => {
-        setNotes(resp);
-        setIsLoggedIn(true);
-      })
-      .catch(()=>{
-        setIsLoggedIn(false);
-        setNotes([]);
-      });
+      .then(resp => setNotes(resp))
+      .catch(() => setNotes([]));
   }, [isLoggedIn]);
 
   const handleLogout = async () => {
     try {
       await logout();
-    } catch (e) {
-      console.error("Logout failed", e);
     } finally {
+      localStorage.removeItem('loginFlag');
       setIsLoggedIn(false);
       setNotes([]);
     }
   };
-
 
   return (
     <Router>
@@ -51,24 +51,22 @@ function App() {
             element={
               <>
                 <NoteBox />
-                {isLoggedIn && notes.length > 0 &&
+                {isLoggedIn &&
                   notes.map(note => (
                     <NoteDisplay
                       key={note.noteid}
                       title={note.title}
                       date={new Date(note.date).toDateString()}
-                      onClick={() => console.log(note.id)}
+                      onClick={() => console.log(note.noteid)}
                     />
                   ))}
               </>
             }
           />
-
           <Route
             path="/login"
             element={<Login onLogin={() => setIsLoggedIn(true)} />}
           />
-
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </main>

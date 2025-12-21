@@ -6,42 +6,36 @@ import { login } from '../../services/public-services';
 import { toast } from 'react-toastify';
 
 const Login = ({ onLogin }) => {
-  const [userData, setUserData]= useState({
-    userid:'',
-    password:''
+  const [userData, setUserData] = useState({
+    userid: '',
+    password: ''
   });
-  const [error, setError]= useState('');
-  const navigate= useNavigate();
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleChange=(event, prop)=>{
-    setUserData({...userData, [prop]:event.target.value})
-  }
+  const handleChange = (event, prop) => {
+    setUserData({ ...userData, [prop]: event.target.value });
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!userData.userid || !userData.password) {
       setError('Please fill in both fields');
       return;
     }
 
-    console.log(userData);
-    login(userData).then((resp)=>{
-      toast.success("Welcome !!");
-      console.log(resp);
-      //something about handling JWT
-    }).catch((error)=>{
-      console.log(error);
-      toast.error("Please check userid and password !!")
-    })
-
-    setUserData({
-      userid:'',
-      password:''
-    });
-    setError('');
-
-    onLogin();
-    navigate('/');
+    try {
+      const resp = await login(userData);
+      localStorage.setItem('loginFlag', resp);
+      toast.success('Welcome !!');
+      onLogin();
+      navigate('/');
+      setUserData({ userid: '', password: '' });
+      setError('');
+    } catch (err) {
+      toast.error('Please check userid and password !!');
+    }
   };
 
   return (
@@ -55,7 +49,7 @@ const Login = ({ onLogin }) => {
             type="text"
             value={userData.userid}
             onChange={(e) => handleChange(e, 'userid')}
-            placeholder="What is your unique userid??"
+            placeholder="What is your unique userid ??"
           />
         </div>
         <div>
@@ -64,7 +58,7 @@ const Login = ({ onLogin }) => {
             type="password"
             value={userData.password}
             onChange={(e) => handleChange(e, 'password')}
-            placeholder="Not lookin, I swear!!"
+            placeholder="Not lookin, I swear !!"
           />
         </div>
         <button type="submit">Login</button>
@@ -74,7 +68,7 @@ const Login = ({ onLogin }) => {
 };
 
 Login.propTypes = {
-  onLogin: PropTypes.func.isRequired, // ensures App.js passes this
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default Login;
