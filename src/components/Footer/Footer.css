@@ -1,0 +1,31 @@
+.footer {
+    background-color: var(--card-bg);
+    padding: 1.5rem 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-links span {
+    cursor: pointer;
+}
+
+.footer-links span:hover {
+    text-decoration: underline;
+}

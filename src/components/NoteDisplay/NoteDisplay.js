@@ -3,9 +3,9 @@ import './NoteDisplay.css';
 
 const NoteDisplay = ({ title, date, onClick }) => {
   return (
-    <div className="note-card" onClick={onClick}>
-      <span className="note-title">{title}</span>
-      <span className="note-date">{date}</span>
+    <div className="NoteDisplay" onClick={onClick}>
+      <h3>{title}</h3>
+      <small>{date}</small>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from './idlelogo.png';
 import './Header.css';
 
-const Header = ({ isLoggedIn, onLogout }) => {
+const Header = ({ isLoggedIn, onLogout, theme, toggleTheme }) => {
   return (
     <header className="header">
       <div className="header-left">
@@ -12,15 +12,18 @@ const Header = ({ isLoggedIn, onLogout }) => {
       </div>
       <div className="header-right">
         {isLoggedIn ? (
-          <Link className="header-link" onClick={onLogout}>
+          <button className="header-btn" onClick={onLogout}>
             Logout
-          </Link>
+          </button>
         ) : (
-          <>
+          <div className="auth-links">
             <Link to="/login" className="header-link">Login</Link>
             <Link to="/signup" className="header-link">Signup</Link>
-          </>
+          </div>
         )}
+        <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
       </div>
     </header>
   );

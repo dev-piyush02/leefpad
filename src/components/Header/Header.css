@@ -1,40 +1,89 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
 .header-left .home-icon {
-  color: #333;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
-.header-left img{
-    max-width:40px;
-    max-width: 40px;
-}
-
-.header-left .home-icon:hover {
-  transform: scale(1.1);
+.header-left img {
+    height: 40px;
+    margin-right: 10px;
 }
 
 .header-right {
-  display: flex;
-  gap: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .header-link {
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
-  transition: 0.3s;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
 .header-link:hover {
-  transform: scale(1.1);
+    background-color: var(--shadow-color);
+}
+
+.sign-up-btn {
+    background-color: var(--primary-color);
+    color: white !important;
+}
+
+.sign-up-btn:hover {
+    opacity: 0.9;
+}
+
+.header-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.header-btn:hover {
+    background-color: var(--shadow-color);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--shadow-color);
 }

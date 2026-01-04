@@ -1,32 +1,47 @@
-.note-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 640px;
-  padding: 1rem;
-  margin: auto;
-  margin-top: 1rem;
-  border: 1px solid #ddd; 
-  border-left: 5px solid blue;
-  border-radius: 8px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+.NoteDisplay {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0;
+    /* Remove bottom margin as we are in a row */
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    min-width: 250px;
+    /* Fixed width for flex items */
+    flex-shrink: 0;
 }
 
-.note-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+.NoteDisplay:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-.note-date {
-  font-size: 0.9rem;
-  color: #666;
+.NoteDisplay h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
 }
 
-.note-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
+.NoteDisplay small {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.note-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.note-list::-webkit-scrollbar {
+    display: none;
 }
