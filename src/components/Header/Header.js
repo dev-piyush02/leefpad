@@ -12,7 +12,7 @@ const Header = ({ isLoggedIn, onLogout, theme, toggleTheme }) => {
       </div>
       <div className="header-right">
         {isLoggedIn ? (
-          <button className="header-btn" onClick={onLogout}>
+          <button className="header-link" onClick={onLogout}>
             Logout
           </button>
         ) : (
