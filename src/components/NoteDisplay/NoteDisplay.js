@@ -1,12 +1,12 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './NoteDisplay.css';
 
-const NoteDisplay = ({ title, date, onClick }) => {
+const NoteDisplay = ({ id, title, date, onClick }) => {
   return (
-    <div className="NoteDisplay" onClick={onClick}>
+    <Link to={`/note/${id}`} className="NoteDisplay" onClick={onClick}>
       <h3>{title}</h3>
       <small>{date}</small>
-    </div>
+    </Link>
   );
 };
 
